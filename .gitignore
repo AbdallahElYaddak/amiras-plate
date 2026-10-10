@@ -1,0 +1,6 @@
+# Kept locally, not part of the site repo
+images/
+design-samples/
+pages-samples/
+*.tmp
+*.tmp.xlsx

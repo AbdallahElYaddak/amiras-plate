@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amira's Plate | مطبخ أميرة – أكل بيتي بطعم فاخر</title>
+<meta name="description" content="أكل بيتي فريش وجاهز على التسوية من مطبخ شيف أميرة: لحوم وفراخ متبلة، محاشي، مكرونات ومقبلات، مع توصيل للبيت. اطلبي على واتساب.">
+<meta name="theme-color" content="#d3123e">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_EG">
+<meta property="og:title" content="Amira's Plate | مطبخ أميرة">
+<meta property="og:description" content="أكل بيتي بطعم فاخر – جاهز على التسوية، بتتبيلة شيف أميرة الخاصة. اطلبي على واتساب.">
+<meta property="og:image" content="img/logo.jpg">
+<link rel="icon" href="img/logo.jpg">
+<link rel="apple-touch-icon" href="img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Amiri:wght@400;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="crim">
+  <div class="top"><div class="wrap">
+    <a class="brand" href="#"><img src="img/logo.jpg" alt="" width="52" height="52"><span><b>مطبخ أميرة</b><small>AMIRA'S PLATE</small></span></a>
+    <nav class="nav" aria-label="أقسام الموقع"><a href="#menu">قائمة الطعام</a><a href="#offers">العروض</a><a href="#about">حكايتنا</a><a href="#delivery">التوصيل</a></nav>
+  </div></div>
+  <div class="wrap hero">
+    <div class="orn" aria-hidden="true">✦ ✦ ✦</div>
+    <h1>أكل بيتي بطعم فاخر</h1>
+    <p>من مطبخ شيف أميرة لسفرتك: لحوم وفراخ متبلة جاهزة على التسوية، محاشي ملفوفة بالإيد، وصواني على أصولها.</p>
+    <div class="btns"><a class="btn" data-wa href="#" target="_blank" rel="noopener">اطلبي على واتساب</a><a class="btn alt" href="#menu">تصفّحي القائمة</a></div>
+    <div class="arch"><img src="img/mahshi.jpg" alt="محشي مشكل وورق عنب من مطبخ أميرة" width="640" height="427"></div>
+  </div>
+</header>
+
+<div class="band"><div class="wrap"><span>فراخ من محل دواجن طازة</span><span>لحمة بلدي ممتازة</span><span>تتبيلة شيف أميرة الخاصة</span><span>توصيل للبيت</span></div></div>
+
+<main class="wrap">
+  <section class="sec" id="offers" aria-labelledby="offers-h">
+    <div class="title"><h2 id="offers-h">العروض الدايمة</h2><p>تنويع على السفرة بسعر أوفر</p></div>
+    <div class="offers" id="offersList"><p class="loading">جاري تحميل العروض…</p></div>
+  </section>
+
+  <section class="sec" id="menu" aria-labelledby="menu-h">
+    <div class="title"><h2 id="menu-h">قائمة الطعام</h2><p>الأسعار بالجنيه المصري</p></div>
+    <nav class="chips" id="catChips" aria-label="أقسام القائمة"></nav>
+    <div class="paper"><div class="cols" id="menuList"><p class="loading">جاري تحميل القائمة…</p></div></div>
+  </section>
+
+  <section class="sec" id="about" aria-labelledby="about-h">
+    <div class="about"><img src="img/logo.jpg" alt="شيف أميرة" width="200" height="200" loading="lazy">
+      <div><h2 id="about-h">حكاية مطبخ أميرة</h2><p>بنطبخ بحب وبنقدّم باهتمام. وصفات البيت المصري بتتعمل كل يوم بإيد شيف أميرة وبتتبيلتها الخاصة، وتوصلك فريش وجاهزة على التسوية.</p></div></div>
+  </section>
+</main>
+
+<footer class="crim foot" id="delivery"><div class="wrap foot-grid">
+  <div><h2>للطلب</h2>
+    <p>واتساب: <a data-wa href="#" target="_blank" rel="noopener"><b dir="ltr" id="waNumber"></b></a></p>
+    <p><a data-social="instagram" href="#" target="_blank" rel="noopener">إنستجرام</a> · <a data-social="facebook" href="#" target="_blank" rel="noopener">فيسبوك</a></p></div>
+  <div><h2>التوصيل</h2>
+    <p>المناطق: <span data-delivery="areas"></span></p>
+    <p>الرسوم: <span data-delivery="fee"></span></p>
+    <p>اطلبي قبلها بـ: <span data-delivery="notice"></span></p></div>
+  <figure class="qr"><img src="qr/whatsapp-qr.svg" alt="QR للطلب على واتساب" width="132" height="132"><figcaption>امسحي واطلبي على واتساب</figcaption></figure>
+</div>
+<p class="copy wrap">© <span id="year"></span> Amira's Plate · Cooking with love, serving with care</p>
+</footer>
+
+<aside class="basket" id="basket" aria-label="سلة الطلب">
+  <div class="basket-in">
+    <div class="bk-row">
+      <div class="bk-sum" id="bkSum" aria-live="polite"></div>
+      <button class="bk-btn ghost" id="bkToggle" type="button" aria-expanded="false" aria-controls="bkPanel" hidden>التفاصيل</button>
+      <a class="bk-btn" id="bkSend" href="#" target="_blank" rel="noopener">ابعتي على واتساب</a>
+    </div>
+    <div class="bk-panel" id="bkPanel" hidden>
+      <div id="bkLines"></div>
+      <form class="bk-form" id="bkForm" autocomplete="on">
+        <label>الاسم<input id="fName" name="name" autocomplete="name" placeholder="مثال: منى أحمد"></label>
+        <label>رقم الموبايل<input id="fPhone" name="phone" autocomplete="tel" inputmode="tel" placeholder="01xxxxxxxxx"></label>
+        <label class="full">العنوان<input id="fAddr" name="addr" autocomplete="street-address" placeholder="المنطقة، الشارع، رقم العمارة والشقة"></label>
+        <label class="full">ملاحظات / اختيارات العروض<textarea id="fNotes" name="notes" rows="2" placeholder="مثال: عرض الـ 3 أطباق: بانيه + استربس + فاهيتا"></textarea></label>
+      </form>
+      <p class="bk-hint">البيانات دي بتتكتب في رسالة الواتساب بس، الموقع مش بيحفظها.</p>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
