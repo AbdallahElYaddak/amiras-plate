@@ -5,11 +5,11 @@ window.SITE = {
   whatsappDisplay: '+20 101 544 1440',
 
   // Published-to-web CSV links of Amira's Google Sheet, one per tab.
-  // Leave empty to use the copies in /data/ instead.
+  // Leave empty to use the copies in /data/ instead (also used if the sheet can't be reached).
   sheet: {
-    categories: '',
-    items: '',
-    offers: ''
+    categories: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=2046955988&single=true&output=csv',
+    items: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=104581627&single=true&output=csv',
+    offers: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=435768444&single=true&output=csv'
   },
 
   // Delivery details shown in the footer.
