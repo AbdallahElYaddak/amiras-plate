@@ -13,10 +13,12 @@ DATA = os.path.join(ROOT, 'site', 'data')
 OUT = os.path.join(ROOT, 'sheet-template', 'AmirasPlate-Menu.xlsx')
 
 TABS = [  # (csv name, tab title, column widths)
-    ('items', 'الأصناف', [16, 40, 16, 10, 8]),
+    ('items', 'الأصناف', [16, 40, 16, 10, 8, 8]),
     ('offers', 'العروض', [26, 10, 34, 44, 30, 8]),
     ('categories', 'الأقسام', [16, 46, 20, 10]),
+    ('messages', 'الرسائل', [16, 60, 60]),
 ]
+YES_NO_COLUMNS = ('متاح', 'انشر')
 HEAD_FILL = PatternFill('solid', fgColor='D3123E')
 HEAD_FONT = Font(bold=True, color='FFFFFF')
 
@@ -29,6 +31,9 @@ HELP = [
     'العروض: كل اختيار في سطر لوحده جوه نفس الخانة (Ctrl+Enter في جوجل شيت، أو Alt+Enter على الكمبيوتر).',
     'العروض اللي "متاح" فيها "لا" بتختفي من الموقع.',
     'الأقسام: ترتيب السطور هنا هو ترتيب الأقسام في الموقع. الصورة لازم تكون اسم ملف موجود في الموقع.',
+    'انشر (في الأصناف): اكتبي "نعم" قدام الأصناف اللي عايزاها في رسالة "متاح النهارده". الأصناف اللي "متاح" فيها "لا" مش بتتنشر.',
+    'الرسائل: أول وآخر سطر في كل رسالة واتساب (العروض، المنيو، متاح النهارده). ممنوع تغيير الكلام في عمود "النوع".',
+    'صفحة الرسائل: افتحي رابط الموقع وبعده post.html، اختاري نوع الرسالة واضغطي "ابعتي على واتساب".',
     'ممنوع تغيير أسماء الأعمدة في السطر الأول.',
     'التغييرات بتظهر على الموقع خلال حوالي 5 دقايق.',
 ]
@@ -53,11 +58,12 @@ def main():
             ws.column_dimensions[chr(65 + i)].width = w
         ws.freeze_panes = 'A2'
         head = rows[0]
-        if 'متاح' in head:
-            col = chr(65 + head.index('متاح'))
-            dv = DataValidation(type='list', formula1='"نعم,لا"', allow_blank=True)
-            ws.add_data_validation(dv)
-            dv.add(f'{col}2:{col}500')
+        for name_yn in YES_NO_COLUMNS:
+            if name_yn in head:
+                col = chr(65 + head.index(name_yn))
+                dv = DataValidation(type='list', formula1='"نعم,لا"', allow_blank=True)
+                ws.add_data_validation(dv)
+                dv.add(f'{col}2:{col}500')
     ws = wb.create_sheet('طريقة الاستخدام')
     ws.sheet_view.rightToLeft = True
     ws.column_dimensions['A'].width = 110

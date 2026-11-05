@@ -9,7 +9,9 @@ window.SITE = {
   sheet: {
     categories: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=2046955988&single=true&output=csv',
     items: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=104581627&single=true&output=csv',
-    offers: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=435768444&single=true&output=csv'
+    offers: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTa6k8S_lFLtUzpz0c9K3HaMVc1CEaV0wJl2LQKHL8WwXuWBAS7zDqNek5CM_bYAUO395RDdFBFpjXm/pub?gid=435768444&single=true&output=csv',
+    // The الرسائل tab: opening and closing line of each WhatsApp post (used by post.html).
+    messages: ''
   },
 
   // Delivery details shown in the footer.

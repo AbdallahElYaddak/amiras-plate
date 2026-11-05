@@ -1,4 +1,4 @@
-// Amira's Plate — loads the menu (Google Sheet or /data/ copies), draws it, and runs the WhatsApp basket.
+// Amira's Plate — draws the menu (read by menu-data.js) and runs the WhatsApp basket.
 (function () {
   'use strict';
   const S = window.SITE;
@@ -6,44 +6,6 @@
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const fmt = n => n.toLocaleString('en-US');
   const wa = text => 'https://wa.me/' + S.whatsapp + (text ? '?text=' + encodeURIComponent(text) : '');
-
-  // ---------- CSV (handles quoted cells with commas and line breaks) ----------
-  function parseCSV(text) {
-    text = text.replace(/^﻿/, '');
-    const rows = []; let row = [], cell = '', q = false;
-    for (let i = 0; i < text.length; i++) {
-      const c = text[i];
-      if (q) {
-        if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; }
-        else cell += c;
-      } else if (c === '"') q = true;
-      else if (c === ',') { row.push(cell); cell = ''; }
-      else if (c === '\n' || c === '\r') {
-        if (c === '\r' && text[i + 1] === '\n') i++;
-        row.push(cell); rows.push(row); row = []; cell = '';
-      } else cell += c;
-    }
-    if (cell !== '' || row.length) { row.push(cell); rows.push(row); }
-    const head = (rows.shift() || []).map(h => h.trim());
-    return rows.filter(r => r.some(v => v.trim() !== ''))
-      .map(r => Object.fromEntries(head.map((h, i) => [h, (r[i] || '').trim()])));
-  }
-
-  async function load(name) {
-    const sheetUrl = S.sheet[name];
-    if (sheetUrl) {
-      try {
-        const r = await fetch(sheetUrl, { cache: 'no-store' });
-        if (r.ok) return parseCSV(await r.text());
-        console.warn('Sheet tab "' + name + '" answered ' + r.status + '; using the copy in /data/.');
-      } catch (e) { console.warn('Sheet tab "' + name + '" could not be read; using the copy in /data/.', e); }
-    }
-    const r = await fetch('data/' + name + '.csv', { cache: 'no-cache' });
-    return parseCSV(await r.text());
-  }
-
-  const isOff = v => /^(لا|no|0|false)$/i.test(v || '');
-  const toPrice = v => { const n = parseFloat(String(v || '').replace(/[^\d.]/g, '')); return isNaN(n) ? null : n; };
 
   // ---------- state ----------
   let MENU = [], OFFERS = [];
@@ -138,18 +100,8 @@
 
   // ---------- boot ----------
   restore(); refresh();
-  Promise.all([load('categories'), load('items'), load('offers')]).then(([cats, items, offers]) => {
-    MENU = cats.map(c => ({ name: c['القسم'], desc: c['الوصف'], img: c['الصورة'], icon: c['الأيقونة'], items: [] }));
-    items.forEach(r => {
-      let cat = MENU.find(c => c.name === r['القسم']);
-      if (!cat) { cat = { name: r['القسم'], desc: '', img: '', icon: '', items: [] }; MENU.push(cat); }
-      cat.items.push({ name: r['الصنف'], unit: r['الوحدة'], price: toPrice(r['السعر']), off: isOff(r['متاح']) });
-    });
-    MENU = MENU.filter(c => c.items.length);
-    OFFERS = offers.filter(o => !isOff(o['متاح'])).map(o => ({
-      name: o['العرض'], price: toPrice(o['السعر']), desc: o['الوصف'], note: o['ملاحظة'],
-      choices: (o['الاختيارات'] || '').split(/\r?\n/).map(s => s.trim()).filter(Boolean)
-    }));
+  window.MenuData.load().then(data => {
+    MENU = data.menu; OFFERS = data.offers;
     renderOffers(); renderMenu();
     // A basket kept from an earlier visit takes today's prices; dishes no longer offered drop out.
     [...basket.keys()].forEach(k => {
